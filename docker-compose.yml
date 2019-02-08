@@ -2,9 +2,10 @@ version: '3'
 services:
   daemon:
     image: linuxserver/syncthing
+    hostname: ${SYNCTHING_HOSTNAME:-node}
     volumes:
       - ${SYNCTHING_VOLUME_CONFIG:-./volumes/config}:/config
-      - ${SYNCTHING_VOLUME_DATA:-./volumes/data}:/mnt
+      - ${SYNCTHING_VOLUME_DATA:-./volumes/data}:/data
     environment:
       - PUID=${SYNCTHING_UID:-1000}
       - PGID=${SYNCTHING_GID:-1000}
