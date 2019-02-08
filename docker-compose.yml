@@ -1,0 +1,15 @@
+version: '3'
+services:
+  daemon:
+    image: linuxserver/syncthing
+    volumes:
+      - ${SYNCTHING_VOLUME_CONFIG:-./volumes/config}:/config
+      - ${SYNCTHING_VOLUME_DATA:-./volumes/data}:/mnt
+    environment:
+      - PUID=${SYNCTHING_UID:-1000}
+      - PGID=${SYNCTHING_GID:-1000}
+      - UMASK_SET=${SYNCTHING_UMASK:-022}
+    ports:
+      - ${SYNCTHING_PORT:-22000}:22000
+      - ${SYNCTHING_PORT_HTTP:-8384}:8384
+      - ${SYNCTHING_PORT_DISCOVERY:-21027}:21027/udp
